@@ -1,0 +1,53 @@
+diff --git a/Android.bp b/Android.bp
+index 9449eb4..b9f3ae7 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -568,6 +568,30 @@ cc_library_shared {
+     vendor_available: true,
+ }
+ 
++cc_prebuilt_library_shared {
++    name: "libtinyxml2-v34",
++    vendor: true,
++    strip: {
++        none: true,
++    },
++    shared_libs: [
++        "liblog",
++        "libc++",
++        "libc",
++        "libm",
++        "libdl",
++    ],
++    target: {
++        android_arm: {
++            srcs: ["vndk/v34/arm/libtinyxml2-v34.so"],
++        },
++        android_arm64: {
++            srcs: ["vndk/v34/arm64/libtinyxml2-v34.so"],
++        },
++    },
++    compile_multilib: "both",
++}
++
+ cc_library_shared {
+     name: "libcomparetf2_shim",
+     srcs: ["libcomparetf2/comparetf2.c"],
+diff --git a/libaudioclient/AudioTrack.cpp b/libaudioclient/AudioTrack.cpp
+index e3a2ee9..bd6c3b2 100644
+--- a/libaudioclient/AudioTrack.cpp
++++ b/libaudioclient/AudioTrack.cpp
+@@ -21,11 +21,11 @@ namespace android {
+ 
+ typedef void (*legacy_callback_t)(int event, void* user, void* info);
+ class LegacyCallbackWrapper : public AudioTrack::IAudioTrackCallback {
+-    const AudioTrack::legacy_callback_t mCallback;
++    const legacy_callback_t mCallback;
+     void* const mData;
+ 
+   public:
+-    LegacyCallbackWrapper(AudioTrack::legacy_callback_t callback, void* user)
++    LegacyCallbackWrapper(legacy_callback_t callback, void* user)
+         : mCallback(callback), mData(user) {}
+     size_t onMoreData(const AudioTrack::Buffer& buffer) override {
+         AudioTrack::Buffer copy = buffer;
