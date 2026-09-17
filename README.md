@@ -72,3 +72,8 @@ The Redmi Note 12 [Pro(+) 5G/Discovery] (codenamed _"ruby"_) are mid-range smart
 ## Device Picture
 
 ![Xiaomi Redmi Note 12 Pro 5G](https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1680754145.42362209!800x800!85.png)
+
+## Credits
+
+* Base device tree by [RubyxLabs](https://github.com/RubyxLabs).
+
