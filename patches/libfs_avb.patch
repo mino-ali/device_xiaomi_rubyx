@@ -1,0 +1,18 @@
+diff --git a/fs_mgr/libfs_avb/util.cpp b/fs_mgr/libfs_avb/util.cpp
+index 79c7b94..88e9666 100644
+--- a/fs_mgr/libfs_avb/util.cpp
++++ b/fs_mgr/libfs_avb/util.cpp
+@@ -113,6 +113,13 @@ bool IsDeviceUnlocked() {
+     if (fs_mgr_get_boot_config("verifiedbootstate", &verified_boot_state)) {
+         return verified_boot_state == "orange";
+     }
++
++    std::string device_state;
++    if (fs_mgr_get_boot_config("vbmeta.device_state", &device_state) ||
++        fs_mgr_get_boot_config("device_state", &device_state)) {
++        return device_state == "unlocked";
++    }
++
+     return false;
+ }
+ 
