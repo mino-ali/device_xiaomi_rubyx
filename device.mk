@@ -87,6 +87,9 @@ PRODUCT_COPY_FILES += \
 # Blur
 TARGET_NOT_USES_BLUR := true
 
+# Shim for libcodec2
+PRODUCT_PACKAGES += libshim
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
